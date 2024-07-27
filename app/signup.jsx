@@ -73,7 +73,11 @@ export default SignupPage = () => {
                 </Pressable>
                 <Text style={styles.fadeoutText}>
                     Already have an account?{" "}
-                    <Link style={styles.forgotPasswordText} href={"/"}>
+                    <Link
+                        replace
+                        style={styles.forgotPasswordText}
+                        href={"/login"}
+                    >
                         Login
                     </Link>
                 </Text>

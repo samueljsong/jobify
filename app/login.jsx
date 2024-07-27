@@ -11,7 +11,7 @@ import { useNavigation } from "expo-router";
 
 //Images
 
-export default function HomeScreen() {
+export default function LoginPage() {
     const navigation = useNavigation();
 
     const onLoginPressHandler = () => {
@@ -80,7 +80,11 @@ export default function HomeScreen() {
                 </Pressable>
                 <Text style={styles.fadeoutText}>
                     Don't have an account?{" "}
-                    <Link style={styles.forgotPasswordText} href={"signup"}>
+                    <Link
+                        replace
+                        style={styles.forgotPasswordText}
+                        href={"signup"}
+                    >
                         Signup
                     </Link>
                 </Text>
