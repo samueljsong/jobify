@@ -10,8 +10,17 @@ import { Link } from "expo-router";
 import { useNavigation } from "expo-router";
 
 export default function SquareJobCard() {
+    const navigation = useNavigation();
+
+    const onCardPressHandler = () => {
+        navigation.navigate("jobInfo");
+    };
+
     return (
-        <Pressable style={{ ...styles.container, ...styles.shadowProp }}>
+        <Pressable
+            style={{ ...styles.container, ...styles.shadowProp }}
+            onPress={onCardPressHandler}
+        >
             <View style={styles.infoContainer}>
                 <Image
                     style={styles.icon}

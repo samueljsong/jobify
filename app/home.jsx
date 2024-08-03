@@ -13,72 +13,96 @@ import { Link } from "expo-router";
 
 //components
 import SquareJobCard from "../components/SquareJobCard";
+import SlimJobCard from "../components/SlimJobCard";
+import SideMenu from "../components/SideMenu";
+import { useState } from "react";
 
 export default HomePage = () => {
+    const [showMenu, setShowMenu] = useState(false);
+
+    const onMenuClickHandler = () => {
+        setShowMenu(!showMenu);
+    };
+
     return (
-        <View style={styles.mainContainer}>
-            <View style={styles.infoContainer}>
-                <View style={styles.topContainer}>
-                    <Image
-                        style={styles.icons}
-                        source={require("../assets/images/menu.png")}
-                    />
-                    <View style={styles.defaultProfile}></View>
-                </View>
-                <View>
-                    <Text style={styles.greenText}>Hello Samuel</Text>
-                    <Text style={styles.title}>Find your perfect job</Text>
-                </View>
-                <View style={styles.searchContainer}>
-                    <View
-                        style={{
-                            ...styles.searchBorderContainer,
-                            ...styles.shadowProp,
-                        }}
-                    >
-                        <TextInput
-                            style={styles.searchTextInput}
-                            placeholder="What job are you looking for?"
-                            placeholderTextColor={"#888888"}
-                        />
+        <>
+            <View style={styles.mainContainer}>
+                {showMenu ? (
+                    <SideMenu setShowMenu={setShowMenu} showMenu={showMenu} />
+                ) : (
+                    <></>
+                )}
+                <View style={styles.infoContainer}>
+                    <View style={styles.topContainer}>
+                        <Pressable onPress={onMenuClickHandler}>
+                            <Image
+                                style={styles.icons}
+                                source={require("../assets/images/menu.png")}
+                            />
+                        </Pressable>
+                        <View style={styles.defaultProfile}></View>
                     </View>
-                    <View style={styles.searchImageContainer}>
-                        <Image
-                            source={require("../assets/images/search.png")}
-                            style={styles.searchImage}
-                        />
+                    <View>
+                        <Text style={styles.greenText}>Hello Samuel</Text>
+                        <Text style={styles.title}>Find your perfect job</Text>
                     </View>
-                </View>
+                    <View style={styles.searchContainer}>
+                        <View
+                            style={{
+                                ...styles.searchBorderContainer,
+                                ...styles.shadowProp,
+                            }}
+                        >
+                            <TextInput
+                                style={styles.searchTextInput}
+                                placeholder="What job are you looking for?"
+                                placeholderTextColor={"#888888"}
+                            />
+                        </View>
+                        <View style={styles.searchImageContainer}>
+                            <Image
+                                source={require("../assets/images/search.png")}
+                                style={styles.searchImage}
+                            />
+                        </View>
+                    </View>
 
-                <View style={styles.filterContainer}>
-                    <Text>THIS IS WHERE FILTERS WILL GO</Text>
-                </View>
+                    <View style={styles.filterContainer}>
+                        <Text>THIS IS WHERE FILTERS WILL GO</Text>
+                    </View>
 
-                <View style={styles.sectionTitle}>
-                    <Text style={styles.greenText}>Popular Jobs</Text>
-                    <Link href={"/jobs/popular"} style={styles.greyText}>
-                        Show all
-                    </Link>
-                </View>
-                <View>
-                    <ScrollView
-                        horizontal={true}
-                        style={styles.squareJobCardContainer}
-                    >
-                        <SquareJobCard />
-                        <SquareJobCard />
-                        <SquareJobCard />
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.greenText}>Popular Jobs</Text>
+                        <Link href={"/jobs/popular"} style={styles.greyText}>
+                            Show all
+                        </Link>
+                    </View>
+                    <View>
+                        <ScrollView
+                            horizontal={true}
+                            style={styles.squareJobCardContainer}
+                        >
+                            <SquareJobCard />
+                            <SquareJobCard />
+                            <SquareJobCard />
+                        </ScrollView>
+                    </View>
+
+                    <View style={styles.sectionTitle}>
+                        <Text style={styles.greenText}>Nearby Jobs</Text>
+                        <Link href={"/jobs/nearby"} style={styles.greyText}>
+                            Show all
+                        </Link>
+                    </View>
+                    <ScrollView>
+                        <SlimJobCard />
+                        <SlimJobCard />
+                        <SlimJobCard />
+                        <SlimJobCard />
                     </ScrollView>
                 </View>
-
-                <View style={styles.sectionTitle}>
-                    <Text style={styles.greenText}>Nearby Jobs</Text>
-                    <Link href={"/jobs/nearby"} style={styles.greyText}>
-                        Show all
-                    </Link>
-                </View>
             </View>
-        </View>
+        </>
     );
 };
 
@@ -127,13 +151,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         color: "#383838",
-        // fontWeight: "bold",
+        fontWeight: "bold",
     },
 
     greenText: {
         color: "#7d887a",
         fontSize: 16,
-        // fontWeight: "bold",
+        fontWeight: "bold",
     },
 
     greyText: {
