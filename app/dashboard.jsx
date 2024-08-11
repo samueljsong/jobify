@@ -11,9 +11,13 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import { useState } from "react";
+import { SvgXml } from "react-native-svg";
 
 //components
 import SideMenu from "../components/SideMenu";
+
+//SVG
+import xml from "../components/DashboardSVG";
 
 export default function DashboardPage() {
     const [showMenu, setShowMenu] = useState(false);
@@ -34,16 +38,27 @@ export default function DashboardPage() {
                     </Pressable>
                     <View style={styles.defaultProfile}></View>
                 </View>
-                <Text>Welcome Samuel</Text>
-                <Text>Your Dashboard</Text>
-                <View>
+                <Text style={styles.greenText}>Welcome Samuel</Text>
+                <Text style={styles.titleText}>Your Dashboard</Text>
+                <View style={styles.jobInformationContainer}>
                     <View>
-                        <Text>Total Jobs</Text>
-                        <Text>18</Text>
-                        <Pressable>
-                            <Text>Add custom job</Text>
+                        <Text style={styles.darkText}>Total Jobs</Text>
+                        <Text
+                            style={{
+                                color: "#ffffff",
+                                fontSize: 40,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            18
+                        </Text>
+                        <Pressable style={styles.addCustomJobButton}>
+                            <Text style={{ color: "#ffffff", padding: 15 }}>
+                                + Add custom job
+                            </Text>
                         </Pressable>
                     </View>
+                    <SvgXml xml={xml} width={"40%"} height={"90%"} />
                 </View>
 
                 <ScrollView>
@@ -55,6 +70,22 @@ export default function DashboardPage() {
 }
 
 const styles = StyleSheet.create({
+    greenText: {
+        fontSize: 16,
+        color: "#7d877a",
+    },
+
+    darkText: {
+        color: "#383838",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+
+    titleText: {
+        fontSize: 22,
+        color: "#383838",
+    },
+
     container: {
         height: "100%",
         width: "100%",
@@ -67,7 +98,7 @@ const styles = StyleSheet.create({
         height: "90%",
         width: "90%",
         flexDirection: "column",
-        gap: 20,
+        gap: 10,
     },
 
     topContainer: {
@@ -87,5 +118,24 @@ const styles = StyleSheet.create({
     icons: {
         width: 33,
         height: 20,
+    },
+
+    jobInformationContainer: {
+        flexDirection: "row",
+        backgroundColor: "#7d877a",
+        borderRadius: 10,
+        width: "100%",
+        height: "20%",
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+
+    jobStatContainer: {
+        height: "90%",
+    },
+
+    addCustomJobButton: {
+        backgroundColor: "#383838",
+        borderRadius: 10,
     },
 });
