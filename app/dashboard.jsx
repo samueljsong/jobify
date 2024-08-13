@@ -15,6 +15,7 @@ import { SvgXml } from "react-native-svg";
 
 //components
 import SideMenu from "../components/SideMenu";
+import DashboardJobComponent from "../components/DashboardJobComponent";
 
 //SVG
 import xml from "../components/DashboardSVG";
@@ -41,12 +42,12 @@ export default function DashboardPage() {
                 <Text style={styles.greenText}>Welcome Samuel</Text>
                 <Text style={styles.titleText}>Your Dashboard</Text>
                 <View style={styles.jobInformationContainer}>
-                    <View>
+                    <View style={styles.jobStatContainer}>
                         <Text style={styles.darkText}>Total Jobs</Text>
                         <Text
                             style={{
                                 color: "#ffffff",
-                                fontSize: 40,
+                                fontSize: 30,
                                 fontWeight: "bold",
                             }}
                         >
@@ -61,8 +62,17 @@ export default function DashboardPage() {
                     <SvgXml xml={xml} width={"40%"} height={"90%"} />
                 </View>
 
+                <View style={styles.filterContainer}>
+                    <Text>This is where the filter tags will go</Text>
+                    <Image
+                        style={{ width: 30, height: 30 }}
+                        source={require("../assets/images/filter.png")}
+                    />
+                </View>
+
                 <ScrollView>
-                    <Text>Create the job cards here</Text>
+                    <DashboardJobComponent />
+                    <DashboardJobComponent />
                 </ScrollView>
             </View>
         </View>
@@ -92,6 +102,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#ffffff",
     },
 
     mainContainer: {
@@ -132,10 +143,19 @@ const styles = StyleSheet.create({
 
     jobStatContainer: {
         height: "90%",
+        flexDirection: "column",
+        gap: "3%",
+        justifyContent: "center",
     },
 
     addCustomJobButton: {
         backgroundColor: "#383838",
         borderRadius: 10,
+    },
+
+    filterContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
     },
 });
